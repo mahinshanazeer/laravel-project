@@ -1,12 +1,18 @@
 logsBucket: 'gs://laravel-log/'
 
 steps:
-  - name: 'docker/compose:1.28.2'
-    args: ['build']
+- name: 'docker/compose:1.28.2'
+  args: [
+    '-p', 'gcr.io/test-case-2-405013/travellist',
+    '-f', './cloudbuild.yaml',
+    'up', '--build', 'app'
+  ]
+- name: 'gcr.io/cloud-builders/docker'
+  args: [
+    'tag',
+    'laravel-test-app',
+    'gcr.io/test-case-2-405013/travellist''
+  ]
+images: ['gcr.io/test-case-2-405013/travellist']
 
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/test-case-2-405013/travellist']
-
-images:
-  - 'gcr.io/test-case-2-405013/travellist/job_app:$COMMIT_SHA'
 

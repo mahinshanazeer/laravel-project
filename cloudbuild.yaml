@@ -1,0 +1,11 @@
+steps:
+# Stage 1: Build the Docker images defined in the Docker Compose file
+- name: 'docker/compose:3'
+  args:
+  - '-f'
+  - 'docker-compose.yaml'
+  - 'build'
+
+# Stage 2: Push the Docker images to Google Container Registry (GCR)
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['compose', '-f', 'docker-compose.yaml', 'push']

@@ -31,4 +31,11 @@ RUN mkdir -p /home/$user/.composer && \
 # Set working directory
 WORKDIR /var/www
 
+# Copy the Laravel application files
+COPY . .
+
+# Run necessary commands
+RUN composer install
+RUN php artisan key:generate
+
 USER $user

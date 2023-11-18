@@ -1,19 +1,42 @@
-# Travellist - Laravel Demo App
+# Task: Setting up a Pipeline in Google Cloud Platform for a PHP-Laravel framework. 
 
-This is a Laravel demo application created for our Laravel at Scale series. 
+1. GCP pipline to autodeploy PHP-Laravel application in GCP erverless computing service.
+2. Setup autoscalling feature for the orchestration of Docker containers.
 
-The branch `tutorial-02` covers containerizing the application to run it with Docker containers.
-
-Once you have Docker and Docker Compose installed, you can get this environment up and running with:
-
+# Travellist - Laravel GCP Project - Docker Compose commands.
 ```
-docker-compose build app
-docker-compose up -d
+docker compose build -t app
+docker compose up -d
+docker compose exec app ls -l
+docker compose exec app rm -rf vendor composer.lock
+docker compose exec app composer install
+docker compose exec app php artisan key:generate
 ```
 
-## Tutorials in this Series:
+# Laravel GCP Project - cloudbuild.yaml file structure.
 
-- [How to Install and Configure Laravel with LEMP on Ubuntu 18.04](https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-laravel-with-lemp-on-ubuntu-18-04)
-- [Containerizing a Laravel 6 Application for Development with Docker Compose on Ubuntu 18.04](https://www.digitalocean.com/community/tutorials/containerizing-a-laravel-6-application-for-development-with-docker-compose-on-ubuntu-18-04)
+logsBucket: 'gs://react-electron_logs'
 
+steps:
+  # Step 1: Install Node.js and Yarn
+  - name: 'node:14'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - 'npm install'
 
+  # Step 2: Install dependencies
+  - name: 'gcr.io/cloud-builders/npm'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - 'npm install concurrently --save-dev'
+
+  # Step 3: Starting the application
+  - name: 'gcr.io/cloud-builders/npm'
+    entrypoint: 'npm'
+    args:
+      - 'run'
+      - 'build'
+
+  # Step 4 : Storing the artifact in docker image formate  

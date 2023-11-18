@@ -17,26 +17,24 @@ docker compose exec app php artisan key:generate
 
 logsBucket: 'gs://react-electron_logs'
 
-steps:
-  # Step 1: Install Node.js and Yarn
-  - name: 'node:14'
-    entrypoint: 'bash'
-    args:
-      - '-c'
-      - 'npm install'
 
-  # Step 2: Install dependencies
-  - name: 'gcr.io/cloud-builders/npm'
-    entrypoint: 'bash'
-    args:
-      - '-c'
-      - 'npm install concurrently --save-dev'
 
-  # Step 3: Starting the application
-  - name: 'gcr.io/cloud-builders/npm'
-    entrypoint: 'npm'
-    args:
-      - 'run'
-      - 'build'
+enable all the necessary APIs
+create a service account and add necessary previlages (by default there will be a service account)
+create a cloud-build service
 
-  # Step 4 : Storing the artifact in docker image formate  
+enable:
+Identity and Access Management (IAM) API
+Manages identity and access control for Google Cloud Platform resources, including the creation of service accounts, which you can use to authenticate to Google and make API calls.
+
+
+Roles:
+Cloud Build Approver
+Cloud Build Connection Admin
+Cloud Run Admin
+Logs Bucket Writer
+Logs Writer
+
+Permission to bucket added:
+Compute Engine default service account	
+Storage Legacy Bucket Owner

@@ -37,10 +37,10 @@ services:
     container_name: travellist-nginx
     restart: unless-stopped
     ports:
-      - "8000:80"
+      - "8000:8080"
     volumes:
       - ./:/var/www
-      - ./:/etc/nginx/conf.d
+      - ./docker-compose/nginx:/etc/nginx/conf.d
     networks:
       - travellist
 

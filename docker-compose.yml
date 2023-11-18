@@ -40,7 +40,7 @@ services:
       - "8000:80"
     volumes:
       - ./:/var/www
-      - ./docker-compose/nginx:/etc/nginx/conf.d
+      - ./:/etc/nginx/conf.d
     networks:
       - travellist
 

@@ -1,11 +1,10 @@
 logsBucket: 'gs://laravel-log/'
-
 steps:
   # Stage 1: Build the Docker images defined in the Docker Compose file
   - name: 'docker/compose:1.28.2'
     args:
-    - 'build'
-    - '-d'
+      - 'build'
+      - '-d'
 
   # Stage 2: Push the Docker images to Google Container Registry (GCR)
   - name: 'gcr.io/cloud-builders/docker'
@@ -15,6 +14,6 @@ images:
   - 'gcr.io/test-case-2-405013/laraveltest:laravel'
 
 options:
-  logging:
+  - logging:
   # Specify the Cloud Storage bucket for storing build logs
     - 'gs://laravel-log/'

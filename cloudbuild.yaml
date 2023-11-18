@@ -1,8 +1,8 @@
 logsBucket: 'gs://laravel-log/'
 
 steps:
-  - name: 'gcr.io/cloud-builders/docker'
-    args: [''compose','build', '-d']
+  - name: 'gcr.io/cloud-builders/docker-compose:3'
+    args: ['build', '-d']
 
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'gcr.io/test-case-2-405013/travellist']

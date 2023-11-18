@@ -3,11 +3,8 @@ logsBucket: 'gs://laravel-log/'
 steps:
   #stage 1: Building
   - name: 'docker/compose:1.28.2'
-    args: ['build']
-
-  #Stage 2: Pushing to artifact
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/test-case-2-405013/travellist']
+    args: ['up', '--build', 'app']
 
 images:
+  - null:
   - 'gcr.io/test-case-2-405013/travellist/job_app:$COMMIT_SHA'

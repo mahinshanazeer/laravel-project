@@ -37,7 +37,7 @@ services:
     container_name: larvaveltest-nginx
     restart: unless-stopped
     ports:
-      - "8000:8080"
+      - "8000:8000"
     volumes:
       - ./:/var/www
       - ./docker-compose/nginx:/etc/nginx/conf.d

@@ -2,7 +2,7 @@ logsBucket: 'gs://laravel-log/'
 
 steps:
 # Stage 1: Build the Docker images defined in the Docker Compose file
-- name: 'docker/compose:3'
+- name: 'docker/compose:3.0'
   args:
   - '-f'
   - 'docker-compose.yaml'

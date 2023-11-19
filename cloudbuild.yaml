@@ -6,8 +6,11 @@ steps:
     args: ['build']
 
   # Stage 2: Tagging the image with the desired tag
-  - name: 'docker/compose:1.28.2'
-    args: ['tag', 'gcr.io/test-case-2-405013/travellist', 'gcr.io/test-case-2-405013/travellist/job_app:$COMMIT_SHA']
+  - name: 'docker'
+    args:
+      - 'tag'
+      - 'gcr.io/test-case-2-405013/travellist'
+      - 'gcr.io/test-case-2-405013/travellist/job_app:$COMMIT_SHA'
 
   # Stage 3: Pushing to artifact
   - name: 'gcr.io/cloud-builders/docker'

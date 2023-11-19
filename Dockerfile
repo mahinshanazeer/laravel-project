@@ -36,6 +36,5 @@ COPY . .
 
 # Run necessary commands
 RUN composer install
-RUN php artisan key:generate
 
 USER $user

@@ -30,11 +30,21 @@ Manages identity and access control for Google Cloud Platform resources, includi
 
 Roles:
 Cloud Build Approver
+Cloud Build Approver
 Cloud Build Connection Admin
 Cloud Run Admin
 Logs Bucket Writer
 Logs Writer
+Storage Object Admin
 
 Permission to bucket added:
 Compute Engine default service account	
 Storage Legacy Bucket Owner
+
+
+Service account permissions in Cloudbuild:
+Cloud Functions	Cloud Functions Developer		
+Cloud Run	Cloud Run Admin
+Secret Manager	Secret Manager Secret Accessor		
+Service Accounts	Service Account User		
+Cloud Build	Cloud Build WorkerPool user		

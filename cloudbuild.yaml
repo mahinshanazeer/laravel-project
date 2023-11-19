@@ -3,7 +3,7 @@ logsBucket: 'gs://laravel-log/'
 steps:
   #stage 1: Building
   - name: 'docker/compose:1.28.2'
-    args: ['up', '-d']
+    args: ['build']
 
   #Stage 2: Pushing to artifact
   - name: 'gcr.io/cloud-builders/docker'
